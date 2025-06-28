@@ -1,3 +1,291 @@
+/* --- SAP Fiori Inspired Theme --- */
+:root {
+  --fiori-primary: #0a6ed1;
+  --fiori-accent: #107e3e;
+  --fiori-error: #d04343;
+  --fiori-warning: #e9730c;
+  --fiori-bg: #f7f7f7;
+  --fiori-surface: #fff;
+  --fiori-border: #e5e5e5;
+  --fiori-text: #32363a;
+  --fiori-shadow: 0 2px 8px rgba(50,54,58,0.08);
+  --fiori-radius: 8px;
+  --fiori-font: '72', '72full', Arial, Helvetica, sans-serif;
+}
+
+body, .dashboard, .admin-panel {
+  background: var(--fiori-bg);
+  color: var(--fiori-text);
+  font-family: var(--fiori-font);
+}
+
+.dashboard-header, .admin-header {
+  background: var(--fiori-surface);
+  box-shadow: var(--fiori-shadow);
+  border-bottom: 1px solid var(--fiori-border);
+  padding: 20px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboard-title, .admin-header h1 {
+  color: var(--fiori-primary);
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.dashboard-subtitle {
+  color: #6a6d70;
+  font-size: 15px;
+  margin-top: 4px;
+}
+
+.dashboard-nav {
+  background: var(--fiori-surface);
+  border-bottom: 1px solid var(--fiori-border);
+  box-shadow: var(--fiori-shadow);
+  display: flex;
+  gap: 4px;
+  padding: 0 32px;
+  z-index: 10;
+}
+
+.nav-tab {
+  background: none;
+  border: none;
+  color: #5a5a5a;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 18px 24px 14px 24px;
+  border-bottom: 3px solid transparent;
+  border-radius: var(--fiori-radius) var(--fiori-radius) 0 0;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-bottom 0.2s;
+}
+.nav-tab.active {
+  color: var(--fiori-primary);
+  border-bottom: 3px solid var(--fiori-primary);
+  background: #eaf3fc;
+}
+.nav-tab:hover {
+  background: #f3f6f9;
+  color: var(--fiori-primary);
+}
+
+.dashboard-content, .admin-content {
+  background: none;
+  padding: 32px 32px 0 32px;
+}
+
+/* Fiori Card */
+.metric-card, .stat-card, .insights-card, .ai-card, .plant-card, .category-card, .trend-card, .admin-form, .admin-table, .admin-section, .overview-tab, .analytics-grid, .plants-section, .section-header, .insight-card {
+  background: var(--fiori-surface);
+  border-radius: var(--fiori-radius);
+  box-shadow: var(--fiori-shadow);
+  border: 1px solid var(--fiori-border);
+}
+.metric-card, .stat-card {
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.section-header, .admin-header {
+  background: none;
+  box-shadow: none;
+  border: none;
+  margin-bottom: 24px;
+}
+
+/* Fiori Buttons */
+.admin-btn, .add-btn, .action-btn, .ai-action-btn, .logout-btn, .refresh-btn, .notification-btn {
+  background: var(--fiori-primary);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.2s;
+  box-shadow: 0 1px 4px rgba(10,110,209,0.08);
+}
+.admin-btn.secondary, .action-btn.secondary {
+  background: #6a6d70;
+}
+.admin-btn.danger, .action-btn.delete {
+  background: var(--fiori-error);
+}
+.admin-btn:hover, .add-btn:hover, .action-btn:hover, .ai-action-btn:hover, .logout-btn:hover, .refresh-btn:hover {
+  background: #0854a0;
+}
+
+/* Fiori Inputs */
+.admin-input, .filter-select, .plant-select, .product-select, .search-bar input, .admin-form input, .admin-form select, .admin-form textarea {
+  border: 1.5px solid var(--fiori-border);
+  border-radius: 4px;
+  padding: 10px 14px;
+  font-size: 15px;
+  background: #fafbfc;
+  color: var(--fiori-text);
+  margin-bottom: 12px;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+.admin-input:focus, .filter-select:focus, .plant-select:focus, .product-select:focus, .admin-form input:focus, .admin-form select:focus, .admin-form textarea:focus {
+  border-color: var(--fiori-primary);
+  box-shadow: 0 0 0 2px #eaf3fc;
+  outline: none;
+}
+
+/* Fiori Table */
+.admin-table, .products-table, .performance-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--fiori-surface);
+  border-radius: var(--fiori-radius);
+  box-shadow: var(--fiori-shadow);
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+.admin-table th, .products-table th, .performance-table th {
+  background: #eaf3fc;
+  color: var(--fiori-primary);
+  font-weight: 600;
+  padding: 16px 12px;
+  font-size: 15px;
+  border-bottom: 1.5px solid var(--fiori-border);
+}
+.admin-table td, .products-table td, .performance-table td {
+  padding: 14px 12px;
+  border-bottom: 1px solid #f3f4f6;
+  font-size: 15px;
+  color: var(--fiori-text);
+}
+.admin-table tr:hover, .products-table tr:hover, .performance-table tr:hover {
+  background: #f3f6f9;
+}
+
+/* Fiori Badges */
+.status-badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 500;
+  background: #eaf3fc;
+  color: var(--fiori-primary);
+  text-transform: uppercase;
+}
+.status-badge.active {
+  background: #d1f5e0;
+  color: var(--fiori-accent);
+}
+.status-badge.inactive {
+  background: #fbeee6;
+  color: #e9730c;
+}
+.status-badge.pending {
+  background: #fff3e0;
+  color: #e9730c;
+}
+.status-badge.maintenance {
+  background: #fff3e0;
+  color: #e9730c;
+}
+.status-badge.out_of_stock {
+  background: #fbeee6;
+  color: var(--fiori-error);
+}
+
+.role-badge {
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  background: #eaf3fc;
+  color: var(--fiori-primary);
+  text-transform: uppercase;
+}
+.role-badge.admin {
+  background: var(--fiori-primary);
+  color: #fff;
+}
+.role-badge.manager {
+  background: var(--fiori-accent);
+  color: #fff;
+}
+.role-badge.user {
+  background: #6a6d70;
+  color: #fff;
+}
+.role-badge.viewer {
+  background: #eaf3fc;
+  color: var(--fiori-primary);
+}
+
+/* Fiori Card Grid */
+.analytics-grid, .admin-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+/* Fiori Plant Cards */
+.plant-card {
+  border-radius: var(--fiori-radius);
+  box-shadow: var(--fiori-shadow);
+  border: 1px solid var(--fiori-border);
+  background: var(--fiori-surface);
+  padding: 24px;
+  margin-bottom: 20px;
+  transition: box-shadow 0.2s, border 0.2s;
+  cursor: pointer;
+}
+.plant-card.selected {
+  border: 2px solid var(--fiori-primary);
+  box-shadow: 0 4px 16px rgba(10,110,209,0.12);
+}
+
+/* Fiori Section Headers */
+.section-header h2, .admin-section h2 {
+  color: var(--fiori-primary);
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+/* Fiori Shadows and Spacing */
+.admin-section, .overview-tab, .analytics-tab, .ai-insights-tab, .forecasting-tab {
+  margin-bottom: 32px;
+  padding: 24px;
+  background: var(--fiori-surface);
+  border-radius: var(--fiori-radius);
+  box-shadow: var(--fiori-shadow);
+  border: 1px solid var(--fiori-border);
+}
+
+/* Fiori Responsive */
+@media (max-width: 900px) {
+  .dashboard-header, .dashboard-nav, .dashboard-content, .admin-content {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .analytics-grid, .admin-stats {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .dashboard-header, .dashboard-nav, .dashboard-content, .admin-content {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+  .metric-card, .stat-card, .plant-card, .admin-section, .overview-tab, .analytics-tab, .ai-insights-tab, .forecasting-tab {
+    padding: 12px;
+  }
+}
+
 /* Dashboard Layout */
 .dashboard {
   min-height: 100vh;
@@ -2450,8 +2738,8 @@
 }
 
 .role-badge.viewer {
-  background: #10b981;
-  color: white;
+  background: #eaf3fc;
+  color: var(--fiori-primary);
 }
 
 /* Search and Filter */

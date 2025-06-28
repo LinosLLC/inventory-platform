@@ -18,7 +18,8 @@ import {
   Calendar,
   Target,
   TrendingDown,
-  Shield
+  Shield,
+  Database
 } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { realtimeService } from '../services/realtimeService';
@@ -26,6 +27,7 @@ import { apiService } from '../services/apiService';
 import { forecastingService } from '../services/forecastingService';
 import { sapIntegrationService } from '../services/sapIntegrationService';
 import AdminPanel from './AdminPanel';
+import MultiErpDashboard from './MultiErpDashboard';
 import { 
   Plant, 
   AiInsight, 
@@ -512,8 +514,8 @@ export default function Dashboard({ onNavigate }: DashboardProps) {
           Analytics
         </button>
         <button 
-          className={`nav-tab ${activeTab === 'ai' ? 'active' : ''}`}
-          onClick={() => setActiveTab('ai')}
+          className={`nav-tab ${activeTab === 'ai-insights' ? 'active' : ''}`}
+          onClick={() => setActiveTab('ai-insights')}
         >
           <Zap size={20} />
           AI Insights
@@ -540,11 +542,11 @@ export default function Dashboard({ onNavigate }: DashboardProps) {
           Forecasting
         </button>
         <button 
-          className={`nav-tab ${activeTab === 'ai-insights' ? 'active' : ''}`}
-          onClick={() => setActiveTab('ai-insights')}
+          className={`nav-tab ${activeTab === 'multi-erp' ? 'active' : ''}`}
+          onClick={() => setActiveTab('multi-erp')}
         >
-          <Zap size={20} />
-          AI Insights
+          <Database size={20} />
+          Multi-ERP
         </button>
         {/* Temporarily show admin tab for debugging */}
         <button 
@@ -1285,13 +1287,6 @@ export default function Dashboard({ onNavigate }: DashboardProps) {
           </div>
         )}
 
-        {activeTab === 'ai' && (
-          <div className="ai-tab">
-            <h2>AI Insights & Predictions</h2>
-            <p>AI features coming soon...</p>
-          </div>
-        )}
-
         {activeTab === 'users' && (
           <div className="users-tab">
             <h2>User Management</h2>
@@ -1679,6 +1674,12 @@ export default function Dashboard({ onNavigate }: DashboardProps) {
         {activeTab === 'admin' && (
           <div className="admin-tab">
             <AdminPanel />
+          </div>
+        )}
+
+        {activeTab === 'multi-erp' && (
+          <div className="multi-erp-tab">
+            <MultiErpDashboard />
           </div>
         )}
       </main>

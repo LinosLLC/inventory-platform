@@ -100,6 +100,8 @@ const initialProducts: Product[] = [
   }
 ];
 
+const PAGE_SIZE = 20;
+
 const AdminProducts: React.FC = () => {
   const [products, setProducts] = useState<Product[]>(initialProducts);
   const [searchTerm, setSearchTerm] = useState('');
@@ -121,6 +123,7 @@ const AdminProducts: React.FC = () => {
     supplier: '',
     status: 'active' as 'active' | 'discontinued' | 'out_of_stock'
   });
+  const [currentPage, setCurrentPage] = useState(1);
 
   const filteredProducts = products.filter(product => {
     const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -130,6 +133,15 @@ const AdminProducts: React.FC = () => {
     const matchesStatus = filterStatus === 'all' || product.status === filterStatus;
     return matchesSearch && matchesCategory && matchesStatus;
   });
+
+  // Pagination logic
+  const totalPages = Math.ceil(filteredProducts.length / PAGE_SIZE);
+  const paginatedProducts = filteredProducts.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
+
+  const goToPage = (page: number) => {
+    if (page < 1 || page > totalPages) return;
+    setCurrentPage(page);
+  };
 
   const addProduct = () => {
     const product: Product = {
@@ -300,7 +312,7 @@ const AdminProducts: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredProducts.map(product => (
+          {paginatedProducts.map(product => (
             <tr key={product.id}>
               <td>
                 <div>
@@ -364,6 +376,32 @@ const AdminProducts: React.FC = () => {
           ))}
         </tbody>
       </table>
+
+      {/* Pagination Controls */}
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 8, margin: '16px 0' }}>
+        <button className="admin-btn" onClick={() => goToPage(currentPage - 1)} disabled={currentPage === 1} style={{ minWidth: 80 }}>
+          Previous
+        </button>
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+          <button
+            key={page}
+            className="admin-btn"
+            style={{
+              minWidth: 40,
+              background: page === currentPage ? '#0a6ed1' : '#eaf3fc',
+              color: page === currentPage ? '#fff' : '#0a6ed1',
+              fontWeight: page === currentPage ? 700 : 500
+            }}
+            onClick={() => goToPage(page)}
+            disabled={page === currentPage}
+          >
+            {page}
+          </button>
+        ))}
+        <button className="admin-btn" onClick={() => goToPage(currentPage + 1)} disabled={currentPage === totalPages} style={{ minWidth: 80 }}>
+          Next
+        </button>
+      </div>
 
       {/* Add/Edit Form */}
       {showForm && (
