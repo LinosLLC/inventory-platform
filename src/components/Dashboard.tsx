@@ -438,6 +438,16 @@ export default function Dashboard({ onNavigate }: DashboardProps) {
           }}>
             Role: {user?.role || 'none'}
           </div>
+          <div style={{ 
+            background: user?.role === 'admin' ? '#4CAF50' : '#ff4444', 
+            padding: '4px 8px', 
+            borderRadius: '4px', 
+            fontSize: '12px',
+            color: 'white',
+            fontWeight: 'bold'
+          }}>
+            {user?.role === 'admin' ? 'ADMIN USER' : 'NOT ADMIN'}
+          </div>
           <button 
             onClick={() => {
               localStorage.clear();
@@ -536,15 +546,18 @@ export default function Dashboard({ onNavigate }: DashboardProps) {
           <Zap size={20} />
           AI Insights
         </button>
-        {user?.role === 'admin' && (
-          <button 
-            className={`nav-tab ${activeTab === 'admin' ? 'active' : ''}`}
-            onClick={() => setActiveTab('admin')}
-          >
-            <Shield size={20} />
-            Admin
-          </button>
-        )}
+        {/* Temporarily show admin tab for debugging */}
+        <button 
+          className={`nav-tab ${activeTab === 'admin' ? 'active' : ''}`}
+          onClick={() => setActiveTab('admin')}
+          style={{ 
+            background: user?.role === 'admin' ? 'linear-gradient(135deg, #667eea, #764ba2)' : '#ff4444',
+            color: 'white'
+          }}
+        >
+          <Shield size={20} />
+          Admin {user?.role === 'admin' ? '(Admin)' : '(Not Admin)'}
+        </button>
       </nav>
 
       {/* Main Content */}
