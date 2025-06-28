@@ -407,6 +407,9 @@ export default function Dashboard({ onNavigate }: DashboardProps) {
     );
   }
 
+  // Debug info - remove this later
+  console.log('User role:', user?.role, 'User:', user);
+
   return (
     <div className="dashboard">
       {/* Header */}
@@ -424,6 +427,16 @@ export default function Dashboard({ onNavigate }: DashboardProps) {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
+          </div>
+          {/* Debug info - remove this later */}
+          <div style={{ 
+            background: '#f0f0f0', 
+            padding: '4px 8px', 
+            borderRadius: '4px', 
+            fontSize: '12px',
+            color: '#666'
+          }}>
+            Role: {user?.role || 'none'}
           </div>
           <button className="notification-btn">
             <Bell size={20} />
