@@ -80,14 +80,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const token = localStorage.getItem('authToken');
     const userData = localStorage.getItem('userData');
     
+    console.log('AuthContext: Checking existing session - token:', !!token, 'userData:', userData);
+    
     if (token && userData) {
       try {
         const user = JSON.parse(userData);
+        console.log('AuthContext: Found existing user with role:', user.role);
         dispatch({ type: 'LOGIN_SUCCESS', payload: user });
       } catch (error) {
+        console.log('AuthContext: Error parsing user data, clearing localStorage');
         localStorage.removeItem('authToken');
         localStorage.removeItem('userData');
       }
+    } else {
+      console.log('AuthContext: No existing session found');
     }
   }, []);
 
@@ -108,6 +114,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         isActive: true,
         lastLogin: new Date(),
       };
+
+      console.log('AuthContext: Setting user with role:', mockUser.role);
 
       // Store in localStorage
       localStorage.setItem('authToken', 'mock-jwt-token');

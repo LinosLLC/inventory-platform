@@ -438,6 +438,23 @@ export default function Dashboard({ onNavigate }: DashboardProps) {
           }}>
             Role: {user?.role || 'none'}
           </div>
+          <button 
+            onClick={() => {
+              localStorage.clear();
+              window.location.reload();
+            }}
+            style={{ 
+              background: '#ff4444', 
+              color: 'white', 
+              border: 'none', 
+              padding: '4px 8px', 
+              borderRadius: '4px', 
+              fontSize: '12px',
+              cursor: 'pointer'
+            }}
+          >
+            Clear & Reload
+          </button>
           <button className="notification-btn">
             <Bell size={20} />
             {notifications.filter(n => !n.isRead).length > 0 && (
